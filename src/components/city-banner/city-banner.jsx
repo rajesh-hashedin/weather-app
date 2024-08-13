@@ -48,6 +48,18 @@ const data = [
 
 export default class CityBanner extends Component {
   render() {
+    const {
+      imageIcon,
+      name,
+      temp,
+      time,
+      pressure,
+      rain,
+      humidity,
+      sunrise,
+      sunset,
+      timezone,
+    } = this.props.city;
     return (
       <div
         style={{
@@ -60,10 +72,13 @@ export default class CityBanner extends Component {
       >
         <div>
           <div>
-            <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="" />
+            <img
+              src={`https://openweathermap.org/img/wn/${imageIcon}@2x.png`}
+              alt=""
+            />
           </div>
-          <div style={{ fontSize: "20px", fontWeight: 700 }}>Banglore</div>
-          <div style={{ fontSize: "50px", fontWeight: 700 }}>25</div>
+          <div style={{ fontSize: "20px", fontWeight: 700 }}>{name}</div>
+          <div style={{ fontSize: "50px", fontWeight: 700 }}>{temp}</div>
         </div>
         <div
           style={{
@@ -77,19 +92,21 @@ export default class CityBanner extends Component {
         >
           <div>
             <div>TIME</div>
-            <div style={{ fontWeight: 700 }}>11:30 AM</div>
+            <div style={{ fontWeight: 700 }}>
+              {new Date(time * 1000).toISOString().slice(11, 16)}
+            </div>
           </div>
           <div>
             <div>PRESSURE</div>
-            <div style={{ fontWeight: 700 }}>345</div>
+            <div style={{ fontWeight: 700 }}>{pressure}</div>
           </div>
           <div>
             <div>% RAIN</div>
-            <div style={{ fontWeight: 700 }}>58%</div>
+            <div style={{ fontWeight: 700 }}>{rain}</div>
           </div>
           <div>
             <div>HUMIDITY</div>
-            <div style={{ fontWeight: 700 }}>22</div>
+            <div style={{ fontWeight: 700 }}>{humidity}</div>
           </div>
         </div>
         <div

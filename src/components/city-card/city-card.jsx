@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import { BiArrowToRight } from "react-icons/bi";
+import { Link } from "react-router";
+import { addSearchCity } from "../../redux/actions";
+import { connect } from "react-redux";
 
-export default class CityCard extends Component {
+class CityCard extends Component {
   render() {
-    const { name, temp, status, description } = this.props.city;
+    const {
+      name,
+      main: { temp },
+      weather,
+    } = this.props.city;
+    const { addSearchCity } = this.props;
     return (
       <div
         style={{
@@ -23,9 +31,14 @@ export default class CityCard extends Component {
           }}
         >
           <div>{name}</div>
-          <div>
-            <BiArrowToRight />
-          </div>
+          <Link
+            to={`/${name}`}
+            onClick={() => {
+              addSearchCity(name);
+            }}
+          >
+            <BiArrowToRight style={{ cursor: "pointer" }} />
+          </Link>
         </div>
         <div
           style={{
@@ -42,10 +55,14 @@ export default class CityCard extends Component {
             justifyContent: "space-between",
           }}
         >
-          <div>{status}</div>
-          <div>{description}</div>
+          <div>{weather[0].main}</div>
+          <div>{weather[0].description}</div>
         </div>
       </div>
     );
   }
 }
+const mapDispatchToProps = {
+  addSearchCity,
+};
+export default connect(() => ({}), mapDispatchToProps)(CityCard);

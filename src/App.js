@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./components/navbar/navbar";
 import { hashHistory, Route, Router } from "react-router";
 import Home from "./components/home/home";
+import City from "./components/city/city";
 
 class App extends Component {
   render() {
@@ -26,6 +27,7 @@ class App extends Component {
         >
           <Router history={hashHistory}>
             <Route path="/" component={Home} />
+            <Route path="/:city" component={City} />
           </Router>
         </div>
       </div>

@@ -1,11 +1,16 @@
-import { DECREMENT, INCREMENT } from "./actionTypes";
+import { ADD_CITY, ADD_SEARCH_CITY, REMOVE_CITY } from "./actionTypes";
 
-export const increment = (value) => ({
-  type: INCREMENT,
+export const addCity = (value) => ({
+  type: ADD_CITY,
   payload: value,
 });
 
-export const decrement = (value) => ({
-  type: DECREMENT,
+export const removeCity = (value) => ({
+  type: REMOVE_CITY,
+  payload: value,
+});
+
+export const addSearchCity = (value) => ({
+  type: ADD_SEARCH_CITY,
   payload: value,
 });

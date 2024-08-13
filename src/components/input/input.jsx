@@ -10,7 +10,7 @@ export default class Input extends Component {
     };
   }
   render() {
-    const { placeholder, onSearch, inputFocus } = this.props;
+    const { placeholder, onSearch, inputFocus,fetchData } = this.props;
     return (
       <div
         style={{
@@ -29,6 +29,7 @@ export default class Input extends Component {
           onFocus={() => onSearch(true)}
           onChange={(e) => {
             this.setState({ city: e.target.value });
+            fetchData(e.target.value)
           }}
           type="text"
           style={{
