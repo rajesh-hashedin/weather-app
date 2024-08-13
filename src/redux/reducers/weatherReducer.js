@@ -7,7 +7,10 @@ import {
 
 const initialState = {
   searchHistory: ["Pune", "Bangalore"],
-  cities: [],
+  cities: [
+    { name: "Pune", temp: 100, imageIcon: "10d" },
+    { name: "Solapur", temp: 100, imageIcon: "10d" },
+  ],
   selectedCity: null,
 };
 

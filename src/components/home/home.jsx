@@ -14,6 +14,8 @@ class Home extends Component {
     this.setState({ ...this.state, inputFocus: value });
   };
   render() {
+    const { cities } = this.props.weather;
+    console.log(cities);
     return (
       <div
         style={{
@@ -34,12 +36,7 @@ class Home extends Component {
           <div>city list</div>
         ) : (
           <div>
-            <Carousel
-              cities={[
-                { name: "Pune", temp: 100, imageIcon: "10d" },
-                { name: "Solapur", temp: 100, imageIcon: "10d" },
-              ]}
-            />
+            <Carousel cities={cities} />
           </div>
         )}
       </div>
