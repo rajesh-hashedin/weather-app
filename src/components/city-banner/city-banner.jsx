@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { AreaChart, Area } from "recharts";
-
 const data = [
   {
     name: "Page A",
@@ -45,32 +44,26 @@ const data = [
     amt: 2100,
   },
 ];
-
 export default class CityBanner extends Component {
   render() {
-    const {
-      imageIcon,
-      name,
-      temp,
-      time,
-      pressure,
-      rain,
-      humidity,
-      sunrise,
-      sunset,
-      timezone,
-    } = this.props.city;
+    const { imageIcon, name, temp } = this.props.city;
     return (
       <div
         style={{
+          position: "relative",
           display: "flex",
-          justifyContent: "center",
-          textAlign: "center",
           flexDirection: "column",
-          gap: 10,
+          gap: 20,
         }}
       >
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
           <div>
             <img
               src={`https://openweathermap.org/img/wn/${imageIcon}@2x.png`}
@@ -82,64 +75,42 @@ export default class CityBanner extends Component {
         </div>
         <div
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            backgroundColor: "#FDFCFC",
             border: "1px solid gray",
-            borderRadius: "5px",
-            padding: "1rem",
+            display: "flex",
+            justifyContent: "space-around",
+            padding: 10,
+            borderRadius: 10,
           }}
         >
           <div>
-            <div>TIME</div>
-            <div style={{ fontWeight: 700 }}>
-              {new Date(time * 1000).toISOString().slice(11, 16)}
-            </div>
+            <div>Time</div>
+            <div>11:50</div>
           </div>
           <div>
-            <div>PRESSURE</div>
-            <div style={{ fontWeight: 700 }}>{pressure}</div>
+            <div>Time</div>
+            <div>11:50</div>
           </div>
           <div>
-            <div>% RAIN</div>
-            <div style={{ fontWeight: 700 }}>{rain}</div>
+            <div>Time</div>
+            <div>11:50</div>
           </div>
           <div>
-            <div>HUMIDITY</div>
-            <div style={{ fontWeight: 700 }}>{humidity}</div>
+            <div>Time</div>
+            <div>11:50</div>
           </div>
         </div>
         <div
           style={{
+            border: "1px solid gray",
             display: "flex",
             justifyContent: "space-between",
-            backgroundColor: "#FDFCFC",
-            border: "1px solid gray",
-            borderRadius: "5px",
-            height: "150px",
+            padding: 10,
+            borderRadius: 10,
           }}
         >
-          <dir
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              alignItems: "start",
-            }}
-          >
-            <div>SUNRISE & SUNSET</div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "start",
-                flexDirection: "column",
-              }}
-            >
-              <div>Length of day: 13H 12M</div>
-              <div>Remaining daylight: 9H 22M</div>
-            </div>
-          </dir>
-          <div style={{ height: "100%" }}>
+          <div>Sunset and Sunrise</div>
+          <div>
+            {" "}
             <AreaChart
               width={300}
               height={100}
@@ -160,6 +131,22 @@ export default class CityBanner extends Component {
             </AreaChart>
           </div>
         </div>
+        <button
+          style={{
+            top: 10,
+            right: 10,
+            border: "none",
+
+            position: "absolute",
+            cursor: "pointer",
+            backgroundColor: "#EC7272",
+            color: "white",
+            padding: "10px",
+            borderRadius: "5px",
+          }}
+        >
+          Remove
+        </button>
       </div>
     );
   }

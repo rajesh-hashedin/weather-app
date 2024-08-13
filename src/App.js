@@ -1,33 +1,27 @@
 import React, { Component } from "react";
 import Navbar from "./components/navbar/navbar";
-import { hashHistory, Route, Router } from "react-router";
+import { browserHistory, Route, Router } from "react-router";
 import Home from "./components/home/home";
 import City from "./components/city/city";
 
 class App extends Component {
   render() {
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-          position: "relative",
-        }}
-      >
-        <Navbar />
+      <div>
         <div
           style={{
-            display: "flex",
-            width: "60%",
-            margin: "auto",
-            alignItems: "center",
-            justifyContent: "center",
+            backgroundColor: "#B2EBF2",
+            position: "sticky",
+            top: 0,
+            left: 0,
           }}
         >
-          <Router history={hashHistory}>
+          <Navbar />
+        </div>
+        <div>
+          <Router history={browserHistory}>
             <Route path="/" component={Home} />
-            <Route path="/:city" component={City} />
+            <Route path="/city" component={City} />
           </Router>
         </div>
       </div>

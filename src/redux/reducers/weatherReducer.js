@@ -1,4 +1,9 @@
-import { ADD_CITY, ADD_SEARCH_CITY, REMOVE_CITY } from "../actions/actionTypes";
+import {
+  ADD_CITY,
+  ADD_SEARCH_CITY,
+  REMOVE_CITY,
+  SET_CITY,
+} from "../actions/actionTypes";
 
 const initialState = {
   searchHistory: ["Pune", "Bangalore"],
@@ -10,6 +15,8 @@ function weatherReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_CITY:
       return { ...state, cities: [...state.cities, action.payload] };
+    case SET_CITY:
+      return { ...state, selectedCity: { ...action.payload } };
     case ADD_SEARCH_CITY:
       return {
         ...state,

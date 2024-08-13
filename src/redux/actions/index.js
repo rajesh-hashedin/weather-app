@@ -1,4 +1,9 @@
-import { ADD_CITY, ADD_SEARCH_CITY, REMOVE_CITY } from "./actionTypes";
+import {
+  ADD_CITY,
+  ADD_SEARCH_CITY,
+  REMOVE_CITY,
+  SET_CITY,
+} from "./actionTypes";
 
 export const addCity = (value) => ({
   type: ADD_CITY,
@@ -12,5 +17,10 @@ export const removeCity = (value) => ({
 
 export const addSearchCity = (value) => ({
   type: ADD_SEARCH_CITY,
+  payload: value,
+});
+
+export const setCity = (value) => ({
+  type: SET_CITY,
   payload: value,
 });

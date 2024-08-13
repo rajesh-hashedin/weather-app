@@ -1,61 +1,55 @@
 import React, { Component } from "react";
-import { BiSearch } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
 
 export default class Input extends Component {
   constructor() {
     super();
     this.state = {
-      city: "",
+      value: "",
     };
   }
   render() {
-    const { placeholder, onSearch, inputFocus,fetchData } = this.props;
+    const {
+      handleInputValue = function () {},
+      inputFocus = false,
+      setInputFocus = function () {},
+    } = this.props;
     return (
       <div
         style={{
-          width: "100%",
           display: "flex",
-          alignItems: "center",
           border: "1px solid gray",
           borderRadius: "2rem",
           paddingLeft: "1rem",
+          paddingRight: "1rem",
           justifyContent: "space-between",
           alignItems: "center",
         }}
       >
         <input
-          value={this.state.city}
-          onFocus={() => onSearch(true)}
+          placeholder="Search city"
           onChange={(e) => {
-            this.setState({ city: e.target.value });
-            fetchData(e.target.value)
+            this.setState({ ...this.state, value: e.target.value });
+            handleInputValue(e.target.value);
           }}
-          type="text"
+          onFocus={() => setInputFocus(true)}
           style={{
             width: "100%",
             outline: "none",
             border: "none",
             padding: "10px",
           }}
-          placeholder={placeholder}
+          value={this.state.value}
         />
         {inputFocus && (
           <ImCross
             onClick={() => {
-              onSearch(false);
-              this.setState({ city: "" });
+              setInputFocus(false);
+              this.setState({ ...this.state, value: "" });
             }}
-            style={{ marginRight: "1rem" }}
+            size={15}
           />
         )}
-
-        <BiSearch
-          onClick={(e) => {
-            if (this.state.city.trim()) onSearch(true);
-          }}
-          style={{ borderLeft: "1px solid gray", padding: "10px" }}
-        />
       </div>
     );
   }
