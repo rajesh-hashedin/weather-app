@@ -10,9 +10,9 @@ class Home extends Component {
       inputFocus: false,
     };
   }
-  setInputFocus = (value) => {
-    this.setState({ ...this.state, inputFocus: value });
-  };
+  setInputFocus(value) {
+    this.setState({ inputFocus: value });
+  }
   render() {
     const { cities } = this.props.weather;
     console.log(cities);

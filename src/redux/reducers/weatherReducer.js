@@ -1,3 +1,4 @@
+import { copyData } from "../../utils/common";
 import {
   ADD_CITY,
   ADD_SEARCH_CITY,
@@ -16,20 +17,28 @@ const initialState = {
 
 function weatherReducer(state = initialState, action) {
   switch (action.type) {
-    case ADD_CITY:
-      return { ...state, cities: [...state.cities, action.payload] };
-    case SET_CITY:
-      return { ...state, selectedCity: { ...action.payload } };
-    case ADD_SEARCH_CITY:
-      return {
-        ...state,
-        searchHistory: [...state.searchHistory, action.payload],
-      };
-    case REMOVE_CITY:
-      return {
-        ...state,
-        cities: state.cities.filter((city) => city.name !== action.payload),
-      };
+    case ADD_CITY: {
+      const stateCopy = copyData(state);
+      stateCopy.cities.push(action.payload);
+      return stateCopy;
+    }
+    case SET_CITY: {
+      const stateCopy = copyData(state);
+      stateCopy.selectedCity = action.payload;
+      return stateCopy;
+    }
+    case ADD_SEARCH_CITY: {
+      const stateCopy = copyData(state);
+      stateCopy.searchHistory.push(action.payload);
+      return stateCopy;
+    }
+    case REMOVE_CITY: {
+      const stateCopy = copyData(state);
+      stateCopy.cities = state.cities.filter(
+        (city) => city.name !== action.payload
+      );
+      return stateCopy;
+    }
     default:
       return state;
   }

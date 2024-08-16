@@ -29,7 +29,7 @@ export default class Input extends Component {
         <input
           placeholder="Search city"
           onChange={(e) => {
-            this.setState({ ...this.state, value: e.target.value });
+            this.setState({ value: e.target.value });
             handleInputValue(e.target.value);
           }}
           onFocus={() => setInputFocus(true)}
@@ -45,7 +45,7 @@ export default class Input extends Component {
           <ImCross
             onClick={() => {
               setInputFocus(false);
-              this.setState({ ...this.state, value: "" });
+              this.setState({ value: "" });
             }}
             size={15}
           />
