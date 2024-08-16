@@ -66,6 +66,12 @@ class City extends Component {
                     imageIcon: selectedCity.weather[0].icon,
                     name: selectedCity.name,
                     temp: selectedCity.main.temp,
+                    pressure: selectedCity.main.pressure,
+                    humidity: selectedCity.main.humidity,
+                    dt: selectedCity.dt,
+                    timezone: selectedCity.timezone,
+                    sunrise: selectedCity.sys.sunrise,
+                    sunset: selectedCity.sys.sunset,
                   });
                   this.setState({ alreadyAdded: true });
                 }
@@ -102,6 +108,10 @@ class City extends Component {
               temp: selectedCity.main.temp,
               pressure: selectedCity.main.pressure,
               humidity: selectedCity.main.humidity,
+              dt: selectedCity.dt,
+              timezone: selectedCity.timezone,
+              sunrise: selectedCity.sys.sunrise,
+              sunset: selectedCity.sys.sunset,
             }}
           />
         </div>

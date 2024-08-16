@@ -2,12 +2,20 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeCity } from "../../redux/actions";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
-import { convertToAMPMTime } from "../../utils/common";
-
+import { convertToLocalTimeString, getTimeInHM } from "../../utils/common";
 class CityBanner extends Component {
   render() {
-    const { imageIcon, name, temp, pressure, humidity, dt, timezone } =
-      this.props.city;
+    const {
+      imageIcon,
+      name,
+      temp,
+      pressure,
+      humidity,
+      dt,
+      timezone,
+      sunrise,
+      sunset,
+    } = this.props.city;
     const { removeBtn = true, removeCity } = this.props;
     return (
       <div
@@ -33,7 +41,9 @@ class CityBanner extends Component {
             />
           </div>
           <div style={{ fontSize: "20px", fontWeight: 700 }}>{name}</div>
-          <div style={{ fontSize: "50px", fontWeight: 700 }}>{temp}</div>
+          <div style={{ fontSize: "50px", fontWeight: 700 }}>
+            {Math.floor(temp - 273.15)}
+          </div>
         </div>
         <div
           style={{
@@ -46,7 +56,7 @@ class CityBanner extends Component {
         >
           <div>
             <div>Time</div>
-            <div>10PM</div>
+            <div>{convertToLocalTimeString(dt, timezone).slice(-7)}</div>
           </div>
           <div>
             <div>PRESSURE</div>
@@ -70,7 +80,21 @@ class CityBanner extends Component {
             borderRadius: 10,
           }}
         >
-          <div>Sunset and Sunrise</div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 10,
+            }}
+          >
+            <div>Sunset and Sunrise</div>
+            <div>
+              Length of day : <b>{getTimeInHM(sunrise, sunset)}</b>{" "}
+            </div>
+            <div>
+              Remaining daylight: <b>{getTimeInHM(dt, sunset)}</b>{" "}
+            </div>
+          </div>
           <div>
             <AreaChart
               width={300}
@@ -89,7 +113,9 @@ class CityBanner extends Component {
                   amt: 2400,
                 },
                 {
-                  name: "7AM SUNRISE",
+                  name: `${convertToLocalTimeString(sunrise, timezone).slice(
+                    -7
+                  )} SR`,
                   uv: 0,
                   pv: 2400,
                   amt: 2400,
@@ -101,7 +127,9 @@ class CityBanner extends Component {
                   amt: 2210,
                 },
                 {
-                  name: "6AM SUNRISE",
+                  name: `${convertToLocalTimeString(sunset, timezone).slice(
+                    -7
+                  )} SS`,
                   uv: 0,
                   pv: 9800,
                   amt: 2290,

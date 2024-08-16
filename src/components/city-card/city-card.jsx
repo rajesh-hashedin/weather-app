@@ -37,7 +37,7 @@ class CityCard extends Component {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ fontWeight: "bold", fontSize: "3rem" }}>
-            {Math.floor(temp)}
+            {Math.floor(temp - 273.15)}
           </div>
           <div>
             <img
