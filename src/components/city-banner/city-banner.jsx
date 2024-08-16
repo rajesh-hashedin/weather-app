@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeCity } from "../../redux/actions";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
-import { convertToLocalTimeString } from "../../utils/common";
 import moment from "moment/moment";
 class CityBanner extends Component {
   render() {
@@ -57,7 +56,7 @@ class CityBanner extends Component {
         >
           <div>
             <div>Time</div>
-            <div>{convertToLocalTimeString(dt, timezone).slice(-7)}</div>
+            <div>{moment.utc((dt + timezone) * 1000).format("hh:mm A")}</div>
           </div>
           <div>
             <div>PRESSURE</div>
@@ -126,9 +125,9 @@ class CityBanner extends Component {
                   amt: 2400,
                 },
                 {
-                  name: `${convertToLocalTimeString(sunrise, timezone).slice(
-                    -7
-                  )} SR`,
+                  name: `${moment
+                    .utc((sunrise + timezone) * 1000)
+                    .format("hh:mm A")} SR`,
                   uv: 0,
                   pv: 2400,
                   amt: 2400,
@@ -140,9 +139,9 @@ class CityBanner extends Component {
                   amt: 2210,
                 },
                 {
-                  name: `${convertToLocalTimeString(sunset, timezone).slice(
-                    -7
-                  )} SS`,
+                  name: `${moment
+                    .utc((sunset + timezone) * 1000)
+                    .format("hh:mm A")} SS`,
                   uv: 0,
                   pv: 9800,
                   amt: 2290,
