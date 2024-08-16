@@ -1,54 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { AreaChart, Area } from "recharts";
 import { removeCity } from "../../redux/actions";
-const data = [
-  {
-    name: "Page A",
-    uv: -4000,
-    pv: -2400,
-    amt: -2400,
-  },
-  {
-    name: "Page B",
-    uv: -3000,
-    pv: -1398,
-    amt: -2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
+import { convertToAMPMTime } from "../../utils/common";
+
 class CityBanner extends Component {
   render() {
-    const { imageIcon, name, temp } = this.props.city;
+    const { imageIcon, name, temp, pressure, humidity, dt, timezone } =
+      this.props.city;
     const { removeBtn = true, removeCity } = this.props;
     return (
       <div
@@ -87,11 +46,11 @@ class CityBanner extends Component {
         >
           <div>
             <div>Time</div>
-            <div>11:50</div>
+            <div>10PM</div>
           </div>
           <div>
             <div>PRESSURE</div>
-            <div>963</div>
+            <div>{pressure}</div>
           </div>
           <div>
             <div>% RAIN</div>
@@ -99,7 +58,7 @@ class CityBanner extends Component {
           </div>
           <div>
             <div>HUMIDITY</div>
-            <div>66</div>
+            <div>{humidity}</div>
           </div>
         </div>
         <div
@@ -113,23 +72,56 @@ class CityBanner extends Component {
         >
           <div>Sunset and Sunrise</div>
           <div>
-            {" "}
             <AreaChart
               width={300}
-              height={100}
-              data={data}
+              height={200}
+              data={[
+                {
+                  name: "",
+                  uv: 0,
+                  pv: 1000,
+                  amt: 1000,
+                },
+                {
+                  name: "",
+                  uv: -1000,
+                  pv: 2400,
+                  amt: 2400,
+                },
+                {
+                  name: "7AM SUNRISE",
+                  uv: 0,
+                  pv: 2400,
+                  amt: 2400,
+                },
+                {
+                  name: "",
+                  uv: 3000,
+                  pv: 1398,
+                  amt: 2210,
+                },
+                {
+                  name: "6AM SUNRISE",
+                  uv: 0,
+                  pv: 9800,
+                  amt: 2290,
+                },
+              ]}
               margin={{
-                top: 5,
-                right: 0,
+                top: 10,
+                right: 30,
                 left: 0,
-                bottom: 5,
+                bottom: 0,
               }}
             >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis tick={false} hide />
               <Area
                 type="monotone"
                 dataKey="uv"
-                stroke="#8884d8"
-                fill="#8884d8"
+                stroke="#7CC9F2"
+                fill="#7CC9F2"
               />
             </AreaChart>
           </div>

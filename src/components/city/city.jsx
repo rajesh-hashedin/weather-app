@@ -24,8 +24,7 @@ class City extends Component {
   render() {
     const { selectedCity } = this.props.weather;
     const { removeCity, addCity, setCity } = this.props;
-    // console.clear();
-    // console.table(this.props.weather.cities);
+    console.log(selectedCity);
     return (
       <div
         style={{
@@ -101,6 +100,8 @@ class City extends Component {
               imageIcon: selectedCity.weather[0].icon,
               name: selectedCity.name,
               temp: selectedCity.main.temp,
+              pressure: selectedCity.main.pressure,
+              humidity: selectedCity.main.humidity,
             }}
           />
         </div>
