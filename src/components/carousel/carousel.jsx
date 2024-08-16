@@ -10,7 +10,6 @@ export default class Carousel extends Component {
   }
   render() {
     const { cities } = this.props;
-    console.log(this.state.index, cities);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
         <div>
@@ -22,6 +21,7 @@ export default class Carousel extends Component {
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {cities.map((city, index) => {
+            console.log(index);
             if (index === this.state.index)
               return (
                 <GoDotFill style={{ cursor: "pointer" }} key={city.name} />

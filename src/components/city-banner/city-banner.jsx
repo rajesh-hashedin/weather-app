@@ -90,16 +90,16 @@ class CityBanner extends Component {
             <div>11:50</div>
           </div>
           <div>
-            <div>Time</div>
-            <div>11:50</div>
+            <div>PRESSURE</div>
+            <div>963</div>
           </div>
           <div>
-            <div>Time</div>
-            <div>11:50</div>
+            <div>% RAIN</div>
+            <div>-</div>
           </div>
           <div>
-            <div>Time</div>
-            <div>11:50</div>
+            <div>HUMIDITY</div>
+            <div>66</div>
           </div>
         </div>
         <div
