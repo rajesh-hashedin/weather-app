@@ -10,10 +10,15 @@ export default class Carousel extends Component {
   }
   render() {
     const { cities } = this.props;
+    console.log(this.state.index, cities);
     return (
       <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
         <div>
-          <CityBanner city={cities[this.state.index]} />
+          <CityBanner
+            city={
+              cities[this.state.index] ? cities[this.state.index] : cities[0]
+            }
+          />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {cities.map((city, index) => {

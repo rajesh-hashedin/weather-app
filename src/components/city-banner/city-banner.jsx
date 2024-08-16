@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { AreaChart, Area } from "recharts";
+import { removeCity } from "../../redux/actions";
 const data = [
   {
     name: "Page A",
@@ -44,9 +46,10 @@ const data = [
     amt: 2100,
   },
 ];
-export default class CityBanner extends Component {
+class CityBanner extends Component {
   render() {
     const { imageIcon, name, temp } = this.props.city;
+    const { removeBtn = true, removeCity } = this.props;
     return (
       <div
         style={{
@@ -131,23 +134,34 @@ export default class CityBanner extends Component {
             </AreaChart>
           </div>
         </div>
-        <button
-          style={{
-            top: 10,
-            right: 10,
-            border: "none",
-
-            position: "absolute",
-            cursor: "pointer",
-            backgroundColor: "#EC7272",
-            color: "white",
-            padding: "10px",
-            borderRadius: "5px",
-          }}
-        >
-          Remove
-        </button>
+        {removeBtn && (
+          <div
+            onClick={() => {
+              removeCity(name);
+            }}
+            style={{
+              top: 10,
+              right: 10,
+              border: "none",
+              position: "absolute",
+              cursor: "pointer",
+              backgroundColor: "#EC7272",
+              color: "white",
+              padding: "10px",
+              borderRadius: "5px",
+            }}
+          >
+            Remove
+          </div>
+        )}
       </div>
     );
   }
 }
+const mapStateToProps = () => ({});
+
+const mapDispatchToProps = {
+  removeCity,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CityBanner);

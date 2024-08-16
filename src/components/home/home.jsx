@@ -30,7 +30,6 @@ class Home extends Component {
   }
   render() {
     const { cities } = this.props.weather;
-    console.log(cities);
     return (
       <div
         style={{
@@ -54,7 +53,23 @@ class Home extends Component {
           </div>
         ) : (
           <div>
-            <Carousel cities={cities} />
+            {cities.length > 0 ? (
+              <Carousel cities={cities} />
+            ) : (
+              <div
+                style={{
+                  paddingTop: "5rem",
+                  alignItems: "center",
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <div>
+                  {/* <img height={100} width={200} src={NoLocationSVG} alt="" /> */}
+                </div>
+                <h3>No locations added to watchlist</h3>
+              </div>
+            )}
           </div>
         )}
       </div>

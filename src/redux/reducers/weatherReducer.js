@@ -8,10 +8,7 @@ import {
 
 const initialState = {
   searchHistory: ["Pune", "Bangalore"],
-  cities: [
-    { name: "Pune", temp: 100, imageIcon: "10d" },
-    { name: "Solapur", temp: 100, imageIcon: "10d" },
-  ],
+  cities: [],
   selectedCity: null,
 };
 
@@ -29,7 +26,8 @@ function weatherReducer(state = initialState, action) {
     }
     case ADD_SEARCH_CITY: {
       const stateCopy = copyData(state);
-      stateCopy.searchHistory.push(action.payload);
+      if (!stateCopy.searchHistory.find((city) => city === action.payload))
+        stateCopy.searchHistory.push(action.payload);
       return stateCopy;
     }
     case REMOVE_CITY: {
