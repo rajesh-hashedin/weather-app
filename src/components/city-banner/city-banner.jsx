@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { removeCity } from "../../redux/actions";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
-import { convertToLocalTimeString, getTimeInHM } from "../../utils/common";
+import { convertToLocalTimeString } from "../../utils/common";
+import moment from "moment/moment";
 class CityBanner extends Component {
   render() {
     const {
@@ -89,10 +90,22 @@ class CityBanner extends Component {
           >
             <div>Sunset and Sunrise</div>
             <div>
-              Length of day : <b>{getTimeInHM(sunrise, sunset)}</b>{" "}
+              Length of day :{" "}
+              <b>
+                {moment
+                  .unix(sunset - sunrise)
+                  .utc()
+                  .format("H[H] m[M]")}
+              </b>{" "}
             </div>
             <div>
-              Remaining daylight: <b>{getTimeInHM(dt, sunset)}</b>{" "}
+              Remaining daylight:{" "}
+              <b>
+                {moment
+                  .unix(sunset - dt)
+                  .utc()
+                  .format("H[H] m[M]")}
+              </b>{" "}
             </div>
           </div>
           <div>

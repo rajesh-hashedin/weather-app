@@ -33,10 +33,3 @@ export function convertToLocalTimeString(unixTime, timezoneOffset) {
   // Combine date and time
   return `${dateFormatted} ${timeFormatted}`;
 }
-
-export function getTimeInHM(sunrise, sunset) {
-  const time = sunset - sunrise;
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  return `${hours}H ${minutes}M`;
-}
