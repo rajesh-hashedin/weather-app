@@ -13,10 +13,10 @@ class CityCard extends Component {
     const { addSearchCity } = this.props;
     return (
       <div
+        className="border shadow card"
         style={{
-          border: "1px solid gray",
           borderRadius: "5px",
-          padding: "5px",
+          padding: "10px",
           display: "flex",
           flexDirection: "column",
           flexBasis: "15rem",

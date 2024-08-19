@@ -15,12 +15,13 @@ class CitySearch extends Component {
           display: "flex",
           flexDirection: "column",
           gap: 30,
-          paddingTop: 10,
+          paddingTop: 20,
         }}
       >
         <div style={{ display: "flex", gap: 10 }}>
           {searchHistory.map((city) => (
             <div
+              className="border card"
               onClick={() => {
                 getWeather(city).then((response) => {
                   setCity(response.data);
@@ -29,10 +30,11 @@ class CitySearch extends Component {
               }}
               style={{
                 cursor: "pointer",
-                border: "1px solid gray",
-                paddingLeft: "1rem",
-                paddingRight: "1rem",
-                borderRadius: 10,
+                paddingLeft: "20px",
+                paddingRight: "20px",
+                paddingTop: "5px",
+                paddingBottom: "5px",
+                borderRadius: 50,
               }}
               key={city}
             >

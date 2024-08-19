@@ -5,6 +5,7 @@ import Input from "../input/input";
 import Carousel from "../carousel/carousel";
 import CitySearch from "../city-search/city-search";
 import { getWeather } from "../../services/common";
+// import NoLocationSVG from "../../assets/no_location.svg";
 class Home extends Component {
   constructor() {
     super();
@@ -33,7 +34,7 @@ class Home extends Component {
     return (
       <div
         style={{
-          paddingTop: "1rem",
+          paddingTop: "5rem",
           display: "flex",
           flexDirection: "column",
           maxWidth: "60%",
@@ -67,7 +68,7 @@ class Home extends Component {
                 <div>
                   {/* <img height={100} width={200} src={NoLocationSVG} alt="" /> */}
                 </div>
-                <h3>No locations added to watchlist</h3>
+                <div>No locations added to watchlist</div>
               </div>
             )}
           </div>

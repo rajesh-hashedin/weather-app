@@ -4,7 +4,7 @@ import { browserHistory } from "react-router";
 import CityBanner from "../city-banner/city-banner";
 import { BiCheck, BiPlus } from "react-icons/bi";
 import { addCity, removeCity, setCity } from "../../redux/actions";
-
+import { IoIosArrowBack } from "react-icons/io";
 class City extends Component {
   constructor() {
     super();
@@ -43,22 +43,32 @@ class City extends Component {
           }}
         >
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              gap: 10,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+            }}
             onClick={() => {
               setCity(null);
               browserHistory.push("/");
             }}
           >
-            Back
+            <IoIosArrowBack />
+            <div style={{ color: "#0170FE", fontWeight: "bold" }}>Back</div>
           </div>
           <div style={{ display: "flex" }}>
             <div
               style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
                 cursor: "pointer",
                 backgroundColor: this.state.alreadyAdded ? "#009456" : "",
                 color: this.state.alreadyAdded ? "white" : "",
                 padding: this.state.alreadyAdded ? "10px" : "",
                 borderRadius: this.state.alreadyAdded ? "5px" : "",
+                fontWeight: "bold",
               }}
               onClick={() => {
                 if (!this.state.alreadyAdded) {
@@ -77,8 +87,22 @@ class City extends Component {
                 }
               }}
             >
-              {this.state.alreadyAdded ? "Added to list" : "Add to list"}
-              {this.state.alreadyAdded ? <BiCheck /> : <BiPlus />}
+              <div>
+                {this.state.alreadyAdded ? "Added to list" : "Add to list"}
+              </div>
+
+              {this.state.alreadyAdded ? (
+                <BiCheck />
+              ) : (
+                <BiPlus
+                  size={20}
+                  style={{
+                    padding: 1,
+                    backgroundColor: "#DADADA",
+                    borderRadius: 10,
+                  }}
+                />
+              )}
             </div>
             {this.state.alreadyAdded && (
               <div

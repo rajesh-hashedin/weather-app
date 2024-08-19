@@ -16,9 +16,9 @@ export default class Input extends Component {
     } = this.props;
     return (
       <div
+        className="shadow border card"
         style={{
           display: "flex",
-          border: "1px solid gray",
           borderRadius: "2rem",
           paddingLeft: "1rem",
           paddingRight: "1rem",
@@ -27,7 +27,7 @@ export default class Input extends Component {
         }}
       >
         <input
-          placeholder="Search city"
+          placeholder="Search Location"
           onChange={(e) => {
             this.setState({ value: e.target.value });
             handleInputValue(e.target.value);
@@ -38,6 +38,8 @@ export default class Input extends Component {
             outline: "none",
             border: "none",
             padding: "10px",
+
+            fontSize: 15,
           }}
           value={this.state.value}
         />

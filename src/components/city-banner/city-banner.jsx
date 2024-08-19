@@ -46,12 +46,14 @@ class CityBanner extends Component {
           </div>
         </div>
         <div
+          className="border card"
           style={{
-            border: "1px solid gray",
             display: "flex",
             justifyContent: "space-around",
             padding: 10,
             borderRadius: 10,
+            color: "#5A5A5A",
+            fontWeight: "bold",
           }}
         >
           <div>
@@ -72,12 +74,13 @@ class CityBanner extends Component {
           </div>
         </div>
         <div
+          className="border card"
           style={{
-            border: "1px solid gray",
             display: "flex",
             justifyContent: "space-between",
             padding: 10,
             borderRadius: 10,
+            color: "#C4C4C4",
           }}
         >
           <div
@@ -90,7 +93,7 @@ class CityBanner extends Component {
             <div>Sunset and Sunrise</div>
             <div>
               Length of day :{" "}
-              <b>
+              <b style={{ color: "black" }}>
                 {moment
                   .unix(sunset - sunrise)
                   .utc()
@@ -99,7 +102,7 @@ class CityBanner extends Component {
             </div>
             <div>
               Remaining daylight:{" "}
-              <b>
+              <b style={{ color: "black" }}>
                 {moment
                   .unix(sunset - dt)
                   .utc()

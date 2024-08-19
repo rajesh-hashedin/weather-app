@@ -7,6 +7,7 @@ class Navbar extends Component {
     const { setCity } = this.props;
     return (
       <div
+        className="shadow"
         onClick={() => {
           setCity(null);
           browserHistory.push("/");
@@ -16,9 +17,12 @@ class Navbar extends Component {
           padding: "1rem",
           fontWeight: "bold",
           fontSize: "20px",
+          height: "50px",
+          display: "flex",
+          alignItems: "center",
         }}
       >
-        Weather Forecaster
+        <div>Weather Forecaster</div>
       </div>
     );
   }

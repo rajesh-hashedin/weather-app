@@ -13,6 +13,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "assets/[name].[ext]", // true outputs JSX tags
+            },
+          },
+        ],
+      },
+      {
         test: /\.(js|jsx)$/, // Match .js and .jsx files
         exclude: /node_modules/,
         use: {
