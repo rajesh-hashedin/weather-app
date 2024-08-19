@@ -5,6 +5,7 @@ import Input from "../input/input";
 import Carousel from "../carousel/carousel";
 import CitySearch from "../city-search/city-search";
 import { getWeather } from "../../services/common";
+import { FaCloud } from "react-icons/fa";
 // import NoLocationSVG from "../../assets/no_location.svg";
 class Home extends Component {
   constructor() {
@@ -66,6 +67,7 @@ class Home extends Component {
                 }}
               >
                 <div>
+                  <FaCloud size={300} color="#D7D7D7" />
                   {/* <img height={100} width={200} src={NoLocationSVG} alt="" /> */}
                 </div>
                 <div>No locations added to watchlist</div>
