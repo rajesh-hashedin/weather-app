@@ -28,8 +28,6 @@ class City extends Component {
     return (
       <div
         style={{
-          width: "60%",
-          margin: "auto",
           display: "flex",
           padding: 30,
           flexDirection: "column",
@@ -57,7 +55,7 @@ class City extends Component {
             <IoIosArrowBack />
             <div style={{ color: "#0170FE", fontWeight: "bold" }}>Back</div>
           </div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", gap: 10 }}>
             <div
               style={{
                 display: "flex",
@@ -123,7 +121,7 @@ class City extends Component {
             )}
           </div>
         </div>
-        <div>
+        <div style={{ width: "60%", margin: "auto" }}>
           <CityBanner
             removeBtn={false}
             city={{

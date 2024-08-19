@@ -50,25 +50,27 @@ class CityBanner extends Component {
           style={{
             display: "flex",
             justifyContent: "space-around",
+            alignItems: "center",
             padding: 10,
             borderRadius: 10,
             color: "#5A5A5A",
             fontWeight: "bold",
+            height: "4rem",
           }}
         >
-          <div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <div>Time</div>
             <div>{moment.utc((dt + timezone) * 1000).format("hh:mm A")}</div>
           </div>
-          <div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <div>PRESSURE</div>
             <div>{pressure}</div>
           </div>
-          <div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <div>% RAIN</div>
             <div>-</div>
           </div>
-          <div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
             <div>HUMIDITY</div>
             <div>{humidity}</div>
           </div>
