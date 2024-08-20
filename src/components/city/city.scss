@@ -1,0 +1,20 @@
+.city_container {
+  display: flex;
+  padding: 2em;
+  flex-direction: column;
+}
+.city_button_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.city_back_button {
+  gap: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.city_back_text {
+  color: #0170fe;
+  font-weight: bold;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ImCross } from "react-icons/im";
-
+import "./input.scss";
 export default class Input extends Component {
   constructor() {
     super();
@@ -15,17 +15,7 @@ export default class Input extends Component {
       setInputFocus = function () {},
     } = this.props;
     return (
-      <div
-        className="shadow border card"
-        style={{
-          display: "flex",
-          borderRadius: "2rem",
-          paddingLeft: "1rem",
-          paddingRight: "1rem",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <div className="shadow border card input_container">
         <input
           placeholder="Search Location"
           onChange={(e) => {
@@ -33,14 +23,6 @@ export default class Input extends Component {
             handleInputValue(e.target.value);
           }}
           onFocus={() => setInputFocus(true)}
-          style={{
-            width: "100%",
-            outline: "none",
-            border: "none",
-            padding: "10px",
-
-            fontSize: 15,
-          }}
           value={this.state.value}
         />
         {inputFocus && (

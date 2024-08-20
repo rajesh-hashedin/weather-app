@@ -3,6 +3,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { browserHistory } from "react-router";
 import { addSearchCity } from "../../redux/actions";
 import { connect } from "react-redux";
+import "./city-card.scss";
 class CityCard extends Component {
   render() {
     const {
@@ -12,22 +13,12 @@ class CityCard extends Component {
     } = this.props.city;
     const { addSearchCity } = this.props;
     return (
-      <div
-        className="border shadow card"
-        style={{
-          borderRadius: "5px",
-          padding: "10px",
-          display: "flex",
-          flexDirection: "column",
-          flexBasis: "15rem",
-          gap: 10,
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ fontWeight: "bold", fontSize: "20px" }}>{name}</div>
+      <div className="border shadow card city_card_container">
+        <div className="city_card_header">
+          <div className="city_card_header_name">{name}</div>
           <div>
             <IoIosArrowForward
-              style={{ cursor: "pointer" }}
+              className="react_icons"
               onClick={() => {
                 addSearchCity(name);
                 browserHistory.push("/city");
@@ -35,10 +26,8 @@ class CityCard extends Component {
             />
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ fontWeight: "bold", fontSize: "3rem" }}>
-            {Math.floor(temp - 273.15)}
-          </div>
+        <div className="city_card_content">
+          <div className="city_card_temp">{Math.floor(temp - 273.15)}</div>
           <div>
             <img
               height={60}
@@ -48,13 +37,7 @@ class CityCard extends Component {
             />
           </div>
         </div>
-        <div
-          style={{
-            color: "#BFAF1B",
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
+        <div className="city_card_footer" style={{}}>
           <div>{weather[0].main}</div>
           <div>{weather[0].description}</div>
         </div>

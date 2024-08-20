@@ -6,6 +6,8 @@ import Carousel from "../carousel/carousel";
 import CitySearch from "../city-search/city-search";
 import { getWeather } from "../../services/common";
 import { FaCloud } from "react-icons/fa";
+import "./home.scss";
+
 // import NoLocationSVG from "../../assets/no_location.svg";
 class Home extends Component {
   constructor() {
@@ -33,15 +35,7 @@ class Home extends Component {
   render() {
     const { cities } = this.props.weather;
     return (
-      <div
-        style={{
-          paddingTop: "5rem",
-          display: "flex",
-          flexDirection: "column",
-          maxWidth: "60%",
-          margin: "auto",
-        }}
-      >
+      <div className="home_container">
         <div>
           <Input
             inputFocus={this.state.inputFocus}
@@ -58,14 +52,7 @@ class Home extends Component {
             {cities.length > 0 ? (
               <Carousel cities={cities} />
             ) : (
-              <div
-                style={{
-                  paddingTop: "5rem",
-                  alignItems: "center",
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
+              <div className="no_location_container">
                 <div>
                   <FaCloud size={300} color="#D7D7D7" />
                   {/* <img height={100} width={200} src={NoLocationSVG} alt="" /> */}

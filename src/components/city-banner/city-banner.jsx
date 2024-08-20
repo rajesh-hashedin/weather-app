@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { removeCity } from "../../redux/actions";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
 import moment from "moment/moment";
+import getChartData, { areaChartMargin } from "./city-banner-chart-data";
+import "./city-banner.scss";
 class CityBanner extends Component {
   render() {
     const {
@@ -18,80 +20,39 @@ class CityBanner extends Component {
     } = this.props.city;
     const { removeBtn = true, removeCity } = this.props;
     return (
-      <div
-        style={{
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          gap: 20,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
+      <div className="city_banner_container">
+        <div className="city_banner_header">
           <div>
             <img
               src={`https://openweathermap.org/img/wn/${imageIcon}@2x.png`}
               alt=""
             />
           </div>
-          <div style={{ fontSize: "20px", fontWeight: 700 }}>{name}</div>
-          <div style={{ fontSize: "50px", fontWeight: 700 }}>
+          <div className="city_banner_header_name">{name}</div>
+          <div className="city_banner_header_temp">
             {Math.floor(temp - 273.15)}
           </div>
         </div>
-        <div
-          className="border card"
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            padding: 10,
-            borderRadius: 10,
-            color: "#5A5A5A",
-            fontWeight: "bold",
-            height: "4rem",
-          }}
-        >
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div className="border card city_banner_content">
+          <div className="city_banner_content_item">
             <div>Time</div>
             <div>{moment.utc((dt + timezone) * 1000).format("hh:mm A")}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div className="city_banner_content_item">
             <div>PRESSURE</div>
             <div>{pressure}</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div className="city_banner_content_item">
             <div>% RAIN</div>
             <div>-</div>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div className="city_banner_content_item">
             <div>HUMIDITY</div>
             <div>{humidity}</div>
           </div>
         </div>
-        <div
-          className="border card"
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            padding: 10,
-            borderRadius: 10,
-            color: "#C4C4C4",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 10,
-            }}
-          >
+        <div className="border card city_banner_footer">
+          <div className="city_banner_footer_item">
             <div>Sunset and Sunrise</div>
             <div>
               Length of day :{" "}
@@ -116,48 +77,8 @@ class CityBanner extends Component {
             <AreaChart
               width={300}
               height={200}
-              data={[
-                {
-                  name: "",
-                  uv: 0,
-                  pv: 1000,
-                  amt: 1000,
-                },
-                {
-                  name: "",
-                  uv: -1000,
-                  pv: 2400,
-                  amt: 2400,
-                },
-                {
-                  name: `${moment
-                    .utc((sunrise + timezone) * 1000)
-                    .format("hh:mm A")} SR`,
-                  uv: 0,
-                  pv: 2400,
-                  amt: 2400,
-                },
-                {
-                  name: "",
-                  uv: 3000,
-                  pv: 1398,
-                  amt: 2210,
-                },
-                {
-                  name: `${moment
-                    .utc((sunset + timezone) * 1000)
-                    .format("hh:mm A")} SS`,
-                  uv: 0,
-                  pv: 9800,
-                  amt: 2290,
-                },
-              ]}
-              margin={{
-                top: 10,
-                right: 30,
-                left: 0,
-                bottom: 0,
-              }}
+              data={getChartData(sunrise, sunset, timezone)}
+              margin={areaChartMargin}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
@@ -172,24 +93,14 @@ class CityBanner extends Component {
           </div>
         </div>
         {removeBtn && (
-          <div
+          <button
+            className="remove_button city_banner_remove_button"
             onClick={() => {
               removeCity(name);
             }}
-            style={{
-              top: 10,
-              right: 10,
-              border: "none",
-              position: "absolute",
-              cursor: "pointer",
-              backgroundColor: "#EC7272",
-              color: "white",
-              padding: "10px",
-              borderRadius: "5px",
-            }}
           >
             Remove
-          </div>
+          </button>
         )}
       </div>
     );

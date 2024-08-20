@@ -5,6 +5,7 @@ import CityBanner from "../city-banner/city-banner";
 import { BiCheck, BiPlus } from "react-icons/bi";
 import { addCity, removeCity, setCity } from "../../redux/actions";
 import { IoIosArrowBack } from "react-icons/io";
+import "./city.scss";
 class City extends Component {
   constructor() {
     super();
@@ -26,34 +27,17 @@ class City extends Component {
     const { removeCity, addCity, setCity } = this.props;
     console.log(selectedCity);
     return (
-      <div
-        style={{
-          display: "flex",
-          padding: 30,
-          flexDirection: "column",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-          }}
-        >
+      <div className="city_container">
+        <div className="city_button_container">
           <div
-            style={{
-              gap: 10,
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-            }}
+            className="city_back_button"
             onClick={() => {
               setCity(null);
               browserHistory.push("/");
             }}
           >
             <IoIosArrowBack />
-            <div style={{ color: "#0170FE", fontWeight: "bold" }}>Back</div>
+            <div className="city_back_text">Back</div>
           </div>
           <div style={{ display: "flex", gap: 10 }}>
             <div
@@ -103,21 +87,15 @@ class City extends Component {
               )}
             </div>
             {this.state.alreadyAdded && (
-              <div
-                style={{
-                  cursor: "pointer",
-                  backgroundColor: "#EC7272",
-                  color: "white",
-                  padding: "10px",
-                  borderRadius: "5px",
-                }}
+              <button
+                className="remove_button"
                 onClick={() => {
                   removeCity(selectedCity.name);
                   this.setState({ alreadyAdded: false });
                 }}
               >
                 Remove
-              </div>
+              </button>
             )}
           </div>
         </div>

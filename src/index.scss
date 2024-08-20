@@ -1,11 +1,9 @@
-$bg-color: red;
 $box-shadow: 0 2px 4px 0 #dadada;
 $border: 1px solid #dadada;
 $card-bg-color: #fdfcfc;
 body {
   margin: 0;
   font-family: Roboto;
-  // background-color: $bg-color;
 }
 .shadow {
   box-shadow: $box-shadow;
@@ -19,4 +17,26 @@ body {
 ::placeholder {
   color: "#D7D7D7";
   opacity: 0.5;
+}
+input {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 15;
+}
+.flex {
+  display: flex;
+}
+
+.react_icons {
+  cursor: pointer;
+}
+.remove_button {
+  border: none;
+  cursor: pointer;
+  background-color: #ec7272;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
 }
