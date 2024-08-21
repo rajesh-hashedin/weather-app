@@ -5,10 +5,8 @@ import Input from "../input/input";
 import Carousel from "../carousel/carousel";
 import CitySearch from "../city-search/city-search";
 import { getWeather } from "../../services/common";
-import { FaCloud } from "react-icons/fa";
 import "./home.scss";
-
-// import NoLocationSVG from "../../assets/no_location.svg";
+import { NoLocationSVG } from "../../assets/svg/no_location";
 class Home extends Component {
   constructor() {
     super();
@@ -54,8 +52,7 @@ class Home extends Component {
             ) : (
               <div className="no_location_container">
                 <div>
-                  <FaCloud size={300} color="#D7D7D7" />
-                  {/* <img height={100} width={200} src={NoLocationSVG} alt="" /> */}
+                  <NoLocationSVG />
                 </div>
                 <div>No locations added to watchlist</div>
               </div>
@@ -66,9 +63,11 @@ class Home extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  weather: state.weather,
-});
+function mapStateToProps(state) {
+  return {
+    weather: state.weather,
+  };
+}
 
 const mapDispatchToProps = {
   setCity,

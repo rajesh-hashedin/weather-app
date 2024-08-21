@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CityBanner from "../city-banner/city-banner";
 import { GoDot, GoDotFill } from "react-icons/go";
+import "./carousel.scss";
 export default class Carousel extends Component {
   constructor() {
     super();
@@ -11,7 +12,7 @@ export default class Carousel extends Component {
   render() {
     const { cities } = this.props;
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+      <div className="carousel_container">
         <div>
           <CityBanner
             city={
@@ -19,16 +20,14 @@ export default class Carousel extends Component {
             }
           />
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div className="carousel_banner">
           {cities.map((city, index) => {
             if (index === this.state.index)
-              return (
-                <GoDotFill style={{ cursor: "pointer" }} key={city.name} />
-              );
+              return <GoDotFill className="react_icons" key={city.name} />;
             else
               return (
                 <GoDot
-                  style={{ cursor: "pointer" }}
+                  className="react_icons"
                   onClick={() => this.setState({ index })}
                   key={city.name}
                 />

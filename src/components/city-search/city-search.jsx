@@ -12,21 +12,23 @@ class CitySearch extends Component {
     const { setCity } = this.props;
     return (
       <div className="city_search_container">
-        <div style={{ display: "flex", gap: 10 }}>
-          {searchHistory.map((city) => (
-            <div
-              className="border card city_search_item"
-              onClick={() => {
-                getWeather(city).then((response) => {
-                  setCity(response.data);
-                  browserHistory.push("/city");
-                });
-              }}
-              key={city}
-            >
-              {city}
-            </div>
-          ))}
+        <div className="city_search_name_container">
+          {searchHistory.map(function (city) {
+            return (
+              <div
+                className="border card city_search_item"
+                onClick={function () {
+                  getWeather(city).then(function (response) {
+                    setCity(response.data);
+                    browserHistory.push("/city");
+                  });
+                }}
+                key={city}
+              >
+                {city}
+              </div>
+            );
+          })}
         </div>
         <div className="flex">
           {selectedCity && <CityCard city={selectedCity} />}
@@ -35,9 +37,11 @@ class CitySearch extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  weather: state.weather,
-});
+function mapStateToProps(state) {
+  return {
+    weather: state.weather,
+  };
+}
 
 const mapDispatchToProps = {
   setCity,

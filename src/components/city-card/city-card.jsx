@@ -19,7 +19,7 @@ class CityCard extends Component {
           <div>
             <IoIosArrowForward
               className="react_icons"
-              onClick={() => {
+              onClick={function () {
                 addSearchCity(name);
                 browserHistory.push("/city");
               }}
@@ -37,7 +37,7 @@ class CityCard extends Component {
             />
           </div>
         </div>
-        <div className="city_card_footer" style={{}}>
+        <div className="city_card_footer">
           <div>{weather[0].main}</div>
           <div>{weather[0].description}</div>
         </div>
@@ -45,7 +45,9 @@ class CityCard extends Component {
     );
   }
 }
-const mapStateToProps = () => ({});
+function mapStateToProps() {
+  return {};
+}
 
 const mapDispatchToProps = {
   addSearchCity,

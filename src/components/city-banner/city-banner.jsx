@@ -31,24 +31,27 @@ class CityBanner extends Component {
           <div className="city_banner_header_name">{name}</div>
           <div className="city_banner_header_temp">
             {Math.floor(temp - 273.15)}
+            <sup>o</sup>
           </div>
         </div>
         <div className="border card city_banner_content">
           <div className="city_banner_content_item">
-            <div>Time</div>
-            <div>{moment.utc((dt + timezone) * 1000).format("hh:mm A")}</div>
+            <div>TIME</div>
+            <div className="city_banner_content_item_value">
+              {moment.utc((dt + timezone) * 1000).format("hh:mm A")}
+            </div>
           </div>
           <div className="city_banner_content_item">
             <div>PRESSURE</div>
-            <div>{pressure}</div>
+            <div className="city_banner_content_item_value">{pressure}</div>
           </div>
           <div className="city_banner_content_item">
             <div>% RAIN</div>
-            <div>-</div>
+            <div className="city_banner_content_item_value">-</div>
           </div>
           <div className="city_banner_content_item">
             <div>HUMIDITY</div>
-            <div>{humidity}</div>
+            <div className="city_banner_content_item_value">{humidity}</div>
           </div>
         </div>
         <div className="border card city_banner_footer">
@@ -56,7 +59,7 @@ class CityBanner extends Component {
             <div>Sunset and Sunrise</div>
             <div>
               Length of day :{" "}
-              <b style={{ color: "black" }}>
+              <b className="city_banner_text">
                 {moment
                   .unix(sunset - sunrise)
                   .utc()
@@ -65,7 +68,7 @@ class CityBanner extends Component {
             </div>
             <div>
               Remaining daylight:{" "}
-              <b style={{ color: "black" }}>
+              <b className="city_banner_text">
                 {moment
                   .unix(sunset - dt)
                   .utc()
@@ -95,7 +98,7 @@ class CityBanner extends Component {
         {removeBtn && (
           <button
             className="remove_button city_banner_remove_button"
-            onClick={() => {
+            onClick={function () {
               removeCity(name);
             }}
           >
@@ -106,7 +109,9 @@ class CityBanner extends Component {
     );
   }
 }
-const mapStateToProps = () => ({});
+function mapStateToProps() {
+  return {};
+}
 
 const mapDispatchToProps = {
   removeCity,

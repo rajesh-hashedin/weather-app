@@ -34,9 +34,18 @@ input {
 }
 .remove_button {
   border: none;
-  cursor: pointer;
   background-color: #ec7272;
   color: white;
   padding: 10px;
   border-radius: 5px;
+}
+button {
+  cursor: pointer;
+}
+.navbar_container {
+  background-color: #b2ebf2;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }

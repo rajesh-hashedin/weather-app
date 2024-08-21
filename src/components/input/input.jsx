@@ -7,33 +7,30 @@ export default class Input extends Component {
     this.state = {
       value: "",
     };
+    this.handleInputOnChange = this.handleInputOnChange.bind(this);
+    this.handleCrossButton = this.handleCrossButton.bind(this);
+  }
+  handleInputOnChange(e) {
+    this.setState({ value: e.target.value });
+    this.props.handleInputValue(e.target.value);
+  }
+  handleCrossButton() {
+    this.props.setInputFocus(false);
+    this.setState({ value: "" });
   }
   render() {
-    const {
-      handleInputValue = function () {},
-      inputFocus = false,
-      setInputFocus = function () {},
-    } = this.props;
+    const { inputFocus = false, setInputFocus = function () {} } = this.props;
     return (
       <div className="shadow border card input_container">
         <input
           placeholder="Search Location"
-          onChange={(e) => {
-            this.setState({ value: e.target.value });
-            handleInputValue(e.target.value);
+          onChange={this.handleInputOnChange}
+          onFocus={function () {
+            setInputFocus(true);
           }}
-          onFocus={() => setInputFocus(true)}
           value={this.state.value}
         />
-        {inputFocus && (
-          <ImCross
-            onClick={() => {
-              setInputFocus(false);
-              this.setState({ value: "" });
-            }}
-            size={15}
-          />
-        )}
+        {inputFocus && <ImCross onClick={this.handleCrossButton} size={15} />}
       </div>
     );
   }

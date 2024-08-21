@@ -26,15 +26,19 @@ function weatherReducer(state = initialState, action) {
     }
     case ADD_SEARCH_CITY: {
       const stateCopy = copyData(state);
-      if (!stateCopy.searchHistory.find((city) => city === action.payload))
+      if (
+        !stateCopy.searchHistory.find(function (city) {
+          return city === action.payload;
+        })
+      )
         stateCopy.searchHistory.push(action.payload);
       return stateCopy;
     }
     case REMOVE_CITY: {
       const stateCopy = copyData(state);
-      stateCopy.cities = state.cities.filter(
-        (city) => city.name !== action.payload
-      );
+      stateCopy.cities = state.cities.filter(function (city) {
+        return city.name !== action.payload;
+      });
       return stateCopy;
     }
     default:

@@ -12,26 +12,50 @@ class City extends Component {
     this.state = {
       alreadySent: false,
     };
+    this.handleAddToList = this.handleAddToList.bind(this);
+    this.handleRemoveButton = this.handleRemoveButton.bind(this);
+    this.handleIsCityExist = this.handleIsCityExist.bind(this);
+  }
+  handleIsCityExist(city) {
+    return city.name === this.props.weather.selectedCity.name;
   }
   componentDidMount() {
-    if (
-      this.props.weather.cities.find(
-        (city) => city.name === this.props.weather.selectedCity.name
-      )
-    ) {
+    if (this.props.weather.cities.find(this.handleIsCityExist)) {
+      this.setState({ alreadyAdded: true });
+    }
+  }
+  handleRemoveButton() {
+    const { selectedCity } = this.props.weather;
+    this.props.removeCity(selectedCity.name);
+    this.setState({ alreadyAdded: false });
+  }
+  handleAddToList() {
+    if (!this.state.alreadyAdded) {
+      const { selectedCity } = this.props.weather;
+      const { addCity } = this.props;
+      addCity({
+        imageIcon: selectedCity.weather[0].icon,
+        name: selectedCity.name,
+        temp: selectedCity.main.temp,
+        pressure: selectedCity.main.pressure,
+        humidity: selectedCity.main.humidity,
+        dt: selectedCity.dt,
+        timezone: selectedCity.timezone,
+        sunrise: selectedCity.sys.sunrise,
+        sunset: selectedCity.sys.sunset,
+      });
       this.setState({ alreadyAdded: true });
     }
   }
   render() {
     const { selectedCity } = this.props.weather;
-    const { removeCity, addCity, setCity } = this.props;
-    console.log(selectedCity);
+    const { setCity } = this.props;
     return (
       <div className="city_container">
         <div className="city_button_container">
           <div
             className="city_back_button"
-            onClick={() => {
+            onClick={function () {
               setCity(null);
               browserHistory.push("/");
             }}
@@ -39,67 +63,35 @@ class City extends Component {
             <IoIosArrowBack />
             <div className="city_back_text">Back</div>
           </div>
-          <div style={{ display: "flex", gap: 10 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                cursor: "pointer",
-                backgroundColor: this.state.alreadyAdded ? "#009456" : "",
-                color: this.state.alreadyAdded ? "white" : "",
-                padding: this.state.alreadyAdded ? "10px" : "",
-                borderRadius: this.state.alreadyAdded ? "5px" : "",
-                fontWeight: "bold",
-              }}
-              onClick={() => {
-                if (!this.state.alreadyAdded) {
-                  addCity({
-                    imageIcon: selectedCity.weather[0].icon,
-                    name: selectedCity.name,
-                    temp: selectedCity.main.temp,
-                    pressure: selectedCity.main.pressure,
-                    humidity: selectedCity.main.humidity,
-                    dt: selectedCity.dt,
-                    timezone: selectedCity.timezone,
-                    sunrise: selectedCity.sys.sunrise,
-                    sunset: selectedCity.sys.sunset,
-                  });
-                  this.setState({ alreadyAdded: true });
-                }
-              }}
-            >
-              <div>
-                {this.state.alreadyAdded ? "Added to list" : "Add to list"}
-              </div>
-
-              {this.state.alreadyAdded ? (
+          <div className="city_add_button_container">
+            {this.state.alreadyAdded ? (
+              <button
+                onClick={this.handleAddToList}
+                className="city_add_button city_add_to_list_button"
+              >
+                <span>Added to list</span>
                 <BiCheck />
-              ) : (
-                <BiPlus
-                  size={20}
-                  style={{
-                    padding: 1,
-                    backgroundColor: "#DADADA",
-                    borderRadius: 10,
-                  }}
-                />
-              )}
-            </div>
+              </button>
+            ) : (
+              <button
+                onClick={this.handleAddToList}
+                className="city_add_button"
+              >
+                <span>Add to list</span>{" "}
+                <BiPlus size={20} className="city_add_button_icon" />
+              </button>
+            )}
             {this.state.alreadyAdded && (
               <button
                 className="remove_button"
-                onClick={() => {
-                  removeCity(selectedCity.name);
-                  this.setState({ alreadyAdded: false });
-                }}
+                onClick={this.handleRemoveButton}
               >
                 Remove
               </button>
             )}
           </div>
         </div>
-        <div style={{ width: "60%", margin: "auto" }}>
+        <div className="city_details">
           <CityBanner
             removeBtn={false}
             city={{
@@ -119,9 +111,11 @@ class City extends Component {
     );
   }
 }
-const mapStateToProps = (state) => ({
-  weather: state.weather,
-});
+function mapStateToProps(state) {
+  return {
+    weather: state.weather,
+  };
+}
 
 const mapDispatchToProps = {
   removeCity,

@@ -5,22 +5,30 @@ import {
   SET_CITY,
 } from "./actionTypes";
 
-export const addCity = (value) => ({
-  type: ADD_CITY,
-  payload: value,
-});
+export function addCity(value) {
+  return {
+    type: ADD_CITY,
+    payload: value,
+  };
+}
 
-export const removeCity = (value) => ({
-  type: REMOVE_CITY,
-  payload: value,
-});
+export function removeCity(value) {
+  return {
+    type: REMOVE_CITY,
+    payload: value,
+  };
+}
 
-export const addSearchCity = (value) => ({
-  type: ADD_SEARCH_CITY,
-  payload: value,
-});
+export function addSearchCity(value) {
+  return {
+    type: ADD_SEARCH_CITY,
+    payload: value,
+  };
+}
 
-export const setCity = (value) => ({
-  type: SET_CITY,
-  payload: value,
-});
+export function setCity(value) {
+  return {
+    type: SET_CITY,
+    payload: value,
+  };
+}

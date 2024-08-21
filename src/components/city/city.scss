@@ -18,3 +18,30 @@
   color: #0170fe;
   font-weight: bold;
 }
+.city_add_button_container {
+  display: flex;
+  gap: 1rem;
+}
+.city_add_button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: bold;
+  border: none;
+  background-color: white;
+}
+.city_add_to_list_button {
+  background-color: #009456;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+.city_add_button_icon {
+  padding: 1px;
+  background-color: #dadada;
+  border-radius: 1rem;
+}
+.city_details {
+  width: 60%;
+  margin: auto;
+}

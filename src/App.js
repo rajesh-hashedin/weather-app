@@ -8,15 +8,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div
-          style={{
-            backgroundColor: "#B2EBF2",
-            position: "sticky",
-            top: 0,
-            left: 0,
-            zIndex: 1,
-          }}
-        >
+        <div className="navbar_container">
           <Navbar />
         </div>
         <div>
