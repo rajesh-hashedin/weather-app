@@ -27,7 +27,9 @@ class Home extends Component {
       if (city.trim()) {
         getWeather(city)
           .then(function (response) {
-            that.props.setCity(response.data);
+            if (response.data === 0) {
+              alert("Add openweather api key in env file");
+            } else that.props.setCity(response.data);
           })
           .catch(function () {
             that.props.setCity(0);

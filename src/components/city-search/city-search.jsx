@@ -19,8 +19,12 @@ class CitySearch extends Component {
                 className="border card city_search_item"
                 onClick={function () {
                   getWeather(city).then(function (response) {
-                    setCity(response.data);
-                    browserHistory.push("/city");
+                    if (response.data === 0) {
+                      alert("Add openweather api key in env file");
+                    } else {
+                      setCity(response.data);
+                      browserHistory.push("/city");
+                    }
                   });
                 }}
                 key={city}
