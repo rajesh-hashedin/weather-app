@@ -21,11 +21,12 @@ class Home extends Component {
     this.setState({ inputFocus: value });
   }
   handleInputValue(city) {
+    const that = this;
     if (this.timeoutId) clearInterval(this.timeoutId);
-    this.timeoutId = setTimeout(() => {
+    this.timeoutId = setTimeout(function () {
       if (city.trim()) {
-        getWeather(city).then((response) => {
-          this.props.setCity(response.data);
+        getWeather(city).then(function (response) {
+          that.props.setCity(response.data);
         });
       }
     }, 1000);

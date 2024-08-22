@@ -8,6 +8,25 @@ export default class Carousel extends Component {
     this.state = {
       index: 0,
     };
+    this.handleCarousel = this.handleCarousel.bind(this);
+    this.handleDotButton = this.handleDotButton.bind(this);
+  }
+  handleDotButton(e) {
+    this.setState({ index: Number(e.target.id) });
+  }
+  handleCarousel(city, index) {
+    if (index === this.state.index)
+      return <GoDotFill className="react_icons" key={city.name} />;
+    else
+      return (
+        <GoDot
+          className="react_icons"
+          id={index}
+          value={index}
+          onClick={this.handleDotButton}
+          key={city.name}
+        />
+      );
   }
   render() {
     const { cities } = this.props;
@@ -20,20 +39,7 @@ export default class Carousel extends Component {
             }
           />
         </div>
-        <div className="carousel_banner">
-          {cities.map((city, index) => {
-            if (index === this.state.index)
-              return <GoDotFill className="react_icons" key={city.name} />;
-            else
-              return (
-                <GoDot
-                  className="react_icons"
-                  onClick={() => this.setState({ index })}
-                  key={city.name}
-                />
-              );
-          })}
-        </div>
+        <div className="carousel_banner">{cities.map(this.handleCarousel)}</div>
       </div>
     );
   }
