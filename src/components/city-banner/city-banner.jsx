@@ -18,7 +18,7 @@ class CityBanner extends Component {
       sunrise,
       sunset,
     } = this.props.city;
-    const { removeBtn = true, removeCity } = this.props;
+    const { removeBtn = true, removeCity, handleRemove } = this.props;
     return (
       <div className="city_banner_container">
         <div className="city_banner_header">
@@ -57,23 +57,28 @@ class CityBanner extends Component {
         <div className="border card city_banner_footer">
           <div className="city_banner_footer_item">
             <div>Sunset and Sunrise</div>
-            <div>
-              Length of day :{" "}
-              <b className="city_banner_text">
-                {moment
-                  .unix(sunset - sunrise)
-                  .utc()
-                  .format("H[H] m[M]")}
-              </b>{" "}
-            </div>
-            <div>
-              Remaining daylight:{" "}
-              <b className="city_banner_text">
-                {moment
-                  .unix(sunset - dt)
-                  .utc()
-                  .format("H[H] m[M]")}
-              </b>{" "}
+            <div
+              className="city_banner_footer_dot_container"
+            >
+              <div>
+
+                Length of day :{" "}
+                <b className="city_banner_text">
+                        {moment
+                    .unix(sunset - sunrise)
+                    .utc()
+                    .format("H[H] m[M]")}
+                </b>{" "}
+              </div>
+              <div>
+                Remaining daylight:{" "}
+                <b className="city_banner_text">
+                  {moment
+                    .unix(sunset - dt)
+                    .utc()
+                    .format("H[H] m[M]")}
+                </b>{" "}
+              </div>
             </div>
           </div>
           <div>
@@ -100,6 +105,7 @@ class CityBanner extends Component {
             className="remove_button city_banner_remove_button"
             onClick={function () {
               removeCity(name);
+              handleRemove();
             }}
           >
             Remove

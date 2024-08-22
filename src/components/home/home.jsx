@@ -25,9 +25,13 @@ class Home extends Component {
     if (this.timeoutId) clearInterval(this.timeoutId);
     this.timeoutId = setTimeout(function () {
       if (city.trim()) {
-        getWeather(city).then(function (response) {
-          that.props.setCity(response.data);
-        });
+        getWeather(city)
+          .then(function (response) {
+            that.props.setCity(response.data);
+          })
+          .catch(function () {
+            that.props.setCity(0);
+          });
       }
     }, 1000);
   }

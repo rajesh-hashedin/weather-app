@@ -31,7 +31,10 @@ class CitySearch extends Component {
           })}
         </div>
         <div className="flex">
-          {selectedCity && <CityCard city={selectedCity} />}
+          {selectedCity === 0 && <div>No city found</div>}
+          {selectedCity !== 0 && selectedCity !== null && (
+            <CityCard city={selectedCity} />
+          )}
         </div>
       </div>
     );
