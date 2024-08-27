@@ -1,8 +1,18 @@
-import { Button } from "@mui/material";
 import React from "react";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/navbar/navbar";
 
 const App = () => {
-  return <Button className="btn btn-primary">App1</Button>;
+  return (
+    <div className="app_container">
+      <div className="navbar_container">
+        <Navbar />
+      </div>
+      <div>
+        <Outlet />
+      </div>
+    </div>
+  );
 };
 
 export default App;

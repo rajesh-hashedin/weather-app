@@ -1,4 +1,18 @@
+$primary-color: #b2ebf2;
 body {
   margin: 0;
   font-family: Roboto;
+}
+.app_container {
+  position: relative;
+}
+.navbar_container {
+  background-color: $primary-color;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  cursor: pointer;
+  padding: 1rem;
+  font-weight: bold;
 }
