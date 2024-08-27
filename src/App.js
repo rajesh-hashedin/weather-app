@@ -1,24 +1,8 @@
-import React, { Component } from "react";
-import Navbar from "./components/navbar";
-import { hashHistory, Route, Router } from "react-router";
-import Home from "./components/home";
-import About from "./components/about";
-import NotFound from "./components/not-found";
+import { Button } from "@mui/material";
+import React from "react";
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Navbar />
-        <Router history={hashHistory}>
-          <Route path="/" component={Home} />
-          <Route path="/*" component={NotFound} />
-          <Route path="/about" component={About} />
-          <Route />
-        </Router>
-      </div>
-    );
-  }
-}
+const App = () => {
+  return <Button className="btn btn-primary">App1</Button>;
+};
 
 export default App;
