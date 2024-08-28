@@ -1,0 +1,14 @@
+.home_container {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  margin: auto;
+  gap: 1rem;
+}
+.no_location_container {
+  padding-top: 5rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

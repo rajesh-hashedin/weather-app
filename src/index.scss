@@ -1,4 +1,7 @@
 $primary-color: #b2ebf2;
+$box-shadow: 0 2px 4px 0 #dadada;
+$border: 1px solid #dadada;
+$card-bg-color: #fdfcfc;
 body {
   margin: 0;
   font-family: Roboto;
@@ -15,4 +18,27 @@ body {
   cursor: pointer;
   padding: 1rem;
   font-weight: bold;
+}
+input {
+  width: 100%;
+  outline: none;
+  border: none;
+  padding: 0.7rem;
+  font-size: "1rem";
+}
+.icon {
+  cursor: pointer;
+}
+.shadow {
+  box-shadow: $box-shadow;
+}
+.border {
+  border: $border;
+}
+.card {
+  background-color: $card-bg-color;
+}
+::placeholder {
+  color: "#D7D7D7";
+  opacity: 0.5;
 }
