@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../input/input";
 import "./home.scss";
 import { getWeather } from "../../services/common";
@@ -7,30 +7,32 @@ import { useSelector } from "react-redux";
 import Carousel from "../carousel/carousel";
 import CityCard from "../city-card/city-card";
 import CitySearchList from "../city-search-list/city-search-list";
-let timeoutId = 0;
+
 const Home = () => {
   const [inputFocus, setInputFocus] = useState(false);
   const [cityData, setCityData] = useState(null);
 
   const weather = useSelector((state) => state.weather);
   const handleInputValue = (city) => {
-    if (timeoutId) clearInterval(timeoutId);
-    timeoutId = setTimeout(() => {
-      if (city.trim()) {
-        getWeather(city)
-          .then((response) => {
-            if (response.data === 0) {
-              alert("Add openweather api key in env file");
-            } else {
-              setCityData(response.data);
-            }
-          })
-          .catch(() => {
-            setCityData(null);
-          });
-      }
-    }, 1000);
+    if (city.trim()) {
+      getWeather(city)
+        .then((response) => {
+          if (response.data === 0) {
+            alert("Add openweather api key in env file");
+          } else {
+            setCityData(response.data);
+          }
+        })
+        .catch(() => {
+          setCityData(null);
+        });
+    }
   };
+  useEffect(() => {
+    if (!inputFocus) {
+      setCityData(null);
+    }
+  }, [inputFocus]);
   return (
     <div className="home_container">
       <div>

@@ -1,27 +1,50 @@
-import React, { useState } from "react";
+import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "./input.scss";
+import { useForm } from "react-hook-form";
 const Input = ({
   inputFocus = false,
   setInputFocus = () => {},
   handleInputValue = () => {},
 }) => {
-  const [value, setValue] = useState("");
-
+  const { register, formState, resetField, watch } = useForm({
+    mode: "onChange",
+  });
   return (
-    <div className="shadow border card input_container">
-      <input
-        placeholder="Search Location"
-        onChange={(e) => {
-          setValue(e.target.value);
-          handleInputValue(e.target.value);
-        }}
-        onFocus={() => setInputFocus(true)}
-        value={value}
-      />
-      {inputFocus && (
-        <CloseIcon onClick={() => setInputFocus(false)} className="icon" />
-      )}
+    <div>
+      <div className="shadow border card input_container">
+        <input
+          placeholder="Search Location"
+          onFocus={() => setInputFocus(true)}
+          {...register("city", {
+            required: true,
+            minLength: 3,
+          })}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              handleInputValue(watch("city"));
+            }
+          }}
+        />
+        {inputFocus && (
+          <CloseIcon
+            onClick={() => {
+              setInputFocus(false);
+              resetField("city");
+            }}
+            className="icon"
+          />
+        )}
+      </div>
+      <span
+        className={`input_error ${
+          formState.errors?.city?.type && "show_input"
+        }`}
+      >
+        {formState.errors?.city?.type === "minLength" &&
+          "Enter atleast 3 character"}
+        {formState.errors?.city?.type === "required" && "City name is required"}
+      </span>
     </div>
   );
 };
