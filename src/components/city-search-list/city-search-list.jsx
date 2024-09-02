@@ -1,7 +1,7 @@
 import React from "react";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
-import { getWeather } from "../services/common";
+import { getWeather } from "../../services/common";
 import { useDispatch } from "react-redux";
 import { setCity } from "../../redux/features/weather/weatherSlice";
 import { useNavigate } from "react-router-dom";

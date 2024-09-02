@@ -17,7 +17,7 @@ const City = () => {
   const navigate = useNavigate();
   const { selectedCity, cities } = useSelector((state) => state.weather);
   const [alreadyAdded, setAlreadyAdded] = useState(false);
-  console.log(cities);
+
   const handleAddToList = () => {
     if (!alreadyAdded) {
       dispatch(
