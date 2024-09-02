@@ -1,10 +1,10 @@
-import moment from "moment";
 import React from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
 import getChartData, { areaChartMargin } from "./city-banner-chart-data";
 import "./city-banner.scss";
 import { useDispatch } from "react-redux";
 import { removeCity } from "../../redux/features/weather/weatherSlice";
+import { DateTime } from "luxon";
 const CityBanner = ({
   city: {
     imageIcon,
@@ -40,7 +40,9 @@ const CityBanner = ({
         <div className="city_banner_content_item">
           <div>TIME</div>
           <div className="city_banner_content_item_value">
-            {moment.utc((dt + timezone) * 1000).format("hh:mm A")}
+            {DateTime.fromSeconds(dt + timezone)
+              .toUTC()
+              .toFormat("hh:mm a")}
           </div>
         </div>
         <div className="city_banner_content_item">
@@ -63,19 +65,17 @@ const CityBanner = ({
             <div>
               Length of day :{" "}
               <b className="city_banner_text">
-                {moment
-                  .unix(sunset - sunrise)
-                  .utc()
-                  .format("H[H] m[M]")}
+                {DateTime.fromSeconds(sunset - sunrise)
+                  .toUTC()
+                  .toFormat("H'H' m'M'")}
               </b>{" "}
             </div>
             <div>
               Remaining daylight:{" "}
               <b className="city_banner_text">
-                {moment
-                  .unix(sunset - dt)
-                  .utc()
-                  .format("H[H] m[M]")}
+                {DateTime.fromSeconds(sunset - dt)
+                  .toUTC()
+                  .toFormat("H'H' m'M'")}
               </b>{" "}
             </div>
           </div>

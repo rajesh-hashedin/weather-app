@@ -1,4 +1,5 @@
-import moment from "moment";
+import { DateTime } from "luxon";
+
 export default function getChartData(sunrise, sunset, timezone) {
   return [
     {
@@ -10,7 +11,9 @@ export default function getChartData(sunrise, sunset, timezone) {
       uv: -1000,
     },
     {
-      name: `${moment.utc((sunrise + timezone) * 1000).format("hh:mm A")} SR`,
+      name: `${DateTime.fromSeconds(sunrise + timezone)
+        .toUTC()
+        .toFormat("hh:mm a")} SR`,
       uv: 0,
     },
     {
@@ -18,7 +21,9 @@ export default function getChartData(sunrise, sunset, timezone) {
       uv: 3000,
     },
     {
-      name: `${moment.utc((sunset + timezone) * 1000).format("hh:mm A")} SS`,
+      name: `${DateTime.fromSeconds(sunset + timezone)
+        .toUTC()
+        .toFormat("hh:mm a")} SS`,
       uv: 0,
     },
   ];
