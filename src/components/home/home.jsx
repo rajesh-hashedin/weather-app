@@ -3,14 +3,15 @@ import Input from "../input/input";
 import "./home.scss";
 import { getWeather } from "../services/common";
 import NoLocationSVG from "../../assets/svg/no_location.svg";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Carousel from "../carousel/carousel";
+import CityCard from "../city-card/city-card";
+import CitySearchList from "../city-search-list/city-search-list";
 let timeoutId = 0;
 const Home = () => {
   const [inputFocus, setInputFocus] = useState(false);
+  const [cityData, setCityData] = useState(null);
   const weather = useSelector((state) => state.weather);
-  console.log(weather);
-  const dispatch = useDispatch();
   const handleInputValue = (city) => {
     if (timeoutId) clearInterval(timeoutId);
     timeoutId = setTimeout(() => {
@@ -20,6 +21,7 @@ const Home = () => {
             if (response.data === 0) {
               alert("Add openweather api key in env file");
             } else {
+              setCityData(response.data);
               console.log(response.data);
             }
           })
@@ -39,7 +41,12 @@ const Home = () => {
         />
       </div>
       {inputFocus ? (
-        <div>City card</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <div>
+            <CitySearchList cities={weather.searchHistory} />
+          </div>
+          <div>{cityData && <CityCard city={cityData} />}</div>
+        </div>
       ) : weather.cities.length > 0 ? (
         <Carousel />
       ) : (

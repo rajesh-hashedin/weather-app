@@ -11,6 +11,7 @@ const Carousel = () => {
     <div className="carousel_container">
       <div>
         <CityBanner
+          setSelectedIndex={setSelectedIndex}
           key={weather.cities[selectedIndex].name}
           city={weather.cities[selectedIndex]}
         />

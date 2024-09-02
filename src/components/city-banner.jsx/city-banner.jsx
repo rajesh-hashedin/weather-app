@@ -3,6 +3,8 @@ import React from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid } from "recharts";
 import getChartData, { areaChartMargin } from "./city-banner-chart-data";
 import "./city-banner.scss";
+import { useDispatch } from "react-redux";
+import { removeCity } from "../../redux/features/weather/weatherSlice";
 const CityBanner = ({
   city: {
     imageIcon,
@@ -16,7 +18,9 @@ const CityBanner = ({
     sunset,
   },
   removeBtn = true,
+  setSelectedIndex = () => {},
 }) => {
+  const dispatch = useDispatch();
   return (
     <div className="city_banner_container">
       <div className="city_banner_header">
@@ -98,7 +102,10 @@ const CityBanner = ({
       {removeBtn && (
         <button
           className="remove_button city_banner_remove_button"
-          onClick={() => {}}
+          onClick={() => {
+            dispatch(removeCity(name));
+            setSelectedIndex(0);
+          }}
         >
           Remove
         </button>

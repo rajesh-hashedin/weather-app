@@ -2,30 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchHistory: ["Pune", "Bangalore"],
-  cities: [
-    {
-      imageIcon: "10d",
-      name: "Solapur",
-      temp: 350,
-      pressure: "123",
-      humidity: "457",
-      dt: 1724838608,
-      timezone: 19800,
-      sunrise: 1724805709,
-      sunset: 1724850823,
-    },
-    {
-      imageIcon: "10d",
-      name: "Beng",
-      temp: 350,
-      pressure: "123",
-      humidity: "457",
-      dt: 1724838608,
-      timezone: 19800,
-      sunrise: 1724805709,
-      sunset: 1724850823,
-    },
-  ],
+  cities: [],
   selectedCity: null,
 };
 

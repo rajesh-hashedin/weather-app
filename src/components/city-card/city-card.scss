@@ -1,0 +1,29 @@
+.city_card_container {
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  width: 17rem;
+  gap: 1rem;
+}
+.city_card_header {
+  display: flex;
+  justify-content: space-between;
+}
+.city_card_header_name {
+  font-weight: bold;
+  font-size: 20px;
+}
+.city_card_content {
+  display: flex;
+  justify-content: space-between;
+}
+.city_card_temp {
+  font-weight: bold;
+  font-size: 3rem;
+}
+.city_card_footer {
+  color: #bfaf1b;
+  display: flex;
+  justify-content: space-between;
+}
