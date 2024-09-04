@@ -14,6 +14,7 @@ const Input = ({
     <div>
       <div className="shadow border card input_container">
         <input
+          type="text"
           placeholder="Search Location"
           onFocus={() => setInputFocus(true)}
           {...register("city", {
@@ -21,7 +22,10 @@ const Input = ({
             minLength: 3,
           })}
           onKeyDown={(event) => {
-            if (event.key === "Enter") {
+            if (
+              event.key === "Enter" &&
+              !Object.keys(formState.errors).length
+            ) {
               handleInputValue(watch("city"));
             }
           }}
