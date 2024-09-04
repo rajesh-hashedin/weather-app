@@ -8,7 +8,7 @@ const Carousel = () => {
   const weather = useSelector((state) => state.weather);
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
-    <div className="carousel_container">
+    <div className="carousel_container" data-testid="carousel_container">
       <div>
         <CityBanner
           setSelectedIndex={setSelectedIndex}

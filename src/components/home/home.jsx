@@ -44,7 +44,7 @@ const Home = () => {
       </div>
       {inputFocus ? (
         <div className="home_city_search_container">
-          <div>
+          <div data-testid="city_search_list">
             <CitySearchList cities={weather.searchHistory} />
           </div>
           <div>{cityData ? <CityCard city={cityData} /> : "No city found"}</div>
