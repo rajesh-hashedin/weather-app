@@ -1,4 +1,4 @@
-import { fireEvent, prettyDOM, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import CitySearchList from "./city-search-list";
 import TestProvider from "../../services/test-provider";
 
